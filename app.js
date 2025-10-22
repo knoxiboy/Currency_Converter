@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.exchangerate.host/convert";
+const BASE_URL = "https://api.frankfurter.dev/v1/latest";
 
 const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("#btn");
@@ -35,14 +35,17 @@ const updateExchangeRate = async () => {
     amount.value = "1";
   }
 
-  const URL = `${BASE_URL}?from=${fromCurr.value}&to=${toCurr.value}&amount=${amtVal}`;
+  const URL = `${BASE_URL}?base=${fromCurr.value}&symbols=${toCurr.value}`;
   const response = await fetch(URL);
   const data = await response.json();
-  const finalAmount = data.result;
-  if (data.error) {
-    msg.innerText = "Error: " + data.error.type;
+  
+  if (!data.rates || !data.rates[toCurr.value]) {
+    msg.innerText = "Error: Unable to fetch exchange rate";
     return;
   }
+  
+  const rate = data.rates[toCurr.value];
+  const finalAmount = (amtVal * rate).toFixed(2);
 
   msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
 };
