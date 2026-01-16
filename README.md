@@ -60,6 +60,31 @@ Then open `http://localhost:8000` in your browser.
 4. Click the "Convert" button or simply wait for automatic conversion
 5. The converted amount will be displayed in the message area
 
+## Program Details
+
+The Currency Converter application consists of three main files:
+
+- **index.html**: Contains the structure of the application with:
+  - An amount input field
+  - Two dropdowns for selecting "from" and "to" currencies
+  - Country flag images that update based on selected currencies
+  - A message area to display conversion results
+  - A convert button
+
+- **style.css**: Provides styling for the application with:
+  - A pleasant color scheme (light yellow background with green button)
+  - Responsive layout using flexbox
+  - Proper spacing and alignment
+  - Visual feedback for interactive elements
+
+- **app.js**: Implements the core functionality:
+  - Fetches exchange rates from Frankfurter API
+  - Updates flag images based on selected currencies
+  - Performs currency conversion calculations
+  - Handles user interactions and form submission
+
+- **codes.js**: Contains a mapping of currency codes to country codes for flag display
+
 ## API
 
 This application uses the Frankfurter API which provides:
